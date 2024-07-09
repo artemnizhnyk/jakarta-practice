@@ -35,7 +35,10 @@ public class FirstServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        resp.setContentType("text/html");
+        PrintWriter writer = resp.getWriter();
+        writer.println("<h1>" + req.getParameter("login") + "</h1>");
+        writer.println("<h1>" + req.getParameter("pwd") + "</h1>");
     }
 
     @Override
