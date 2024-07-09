@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 
 @WebServlet("/first")
 public class FirstServlet extends HttpServlet {
@@ -23,6 +24,13 @@ public class FirstServlet extends HttpServlet {
 
         PrintWriter writer = resp.getWriter();
         writer.println("<h1>Hi First Servlet</h1>");
+        resp.setHeader("MY_HEADER", "Hi");
+
+        Enumeration<String> headerNames = req.getHeaderNames();
+        while (headerNames.hasMoreElements()) {
+            String s = headerNames.nextElement();
+            writer.println("<h3>" + s + " : " + req.getHeader(s) + "</h3>");
+        }
     }
 
     @Override
